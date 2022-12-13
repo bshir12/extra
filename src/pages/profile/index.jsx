@@ -1,5 +1,8 @@
 import { NavbarDua, Footer, Transaksi, CardProduk, } from "@components";
 import React from "react";
+import CardJiwa from "../../components/tablist/card-jiwa";
+import CardKesehatan from "../../components/tablist/card-kesehatan";
+import CardPendidikan from "../../components/tablist/card-pendidikan";
 
 const Profile = () => {
   return (
@@ -59,12 +62,17 @@ const Profile = () => {
         Produk Asuransi Anda
         </div>
         <CardProduk />
+        <CardKesehatan/>
+        <CardPendidikan/>
       </div>
       <div>
         <div className="shadow-2xl border-b-2 m-5 rounded-lg text-center font-bold text-2xl">
         Wishlist Produk
         </div>
         <CardProduk />
+        
+        <CardKesehatan/>
+        <CardPendidikan/>
       </div>
       <Transaksi />
       <Footer />

@@ -27,6 +27,7 @@ const NavbarDua = () => {
               <button
                 className="bg-orange-500 text-white py-1 px-6 rounded-md hover:bg-orange-700" 
                 onClick={() => {localStorage.clear(); navigate(`/`)}}
+                //onClick={() => {localStorage.removeItem('token')userAuthentication()}}
                 >Logout</button>
             </li>
           </ul>
@@ -37,3 +38,27 @@ const NavbarDua = () => {
 };
 
 export default NavbarDua;
+
+export const LOGOUT_ACTION = '[Logout action] logout action';
+
+export function logout(history) {
+    localStorage.removeItem('userDetails');
+    history.push('/login');
+    return {
+        type: LOGOUT_ACTION,
+    };
+}
+
+export function saveTokenInLocalStorage(tokenDetails) {
+    tokenDetails.expireDate = new Date(
+        new Date().getTime() + tokenDetails.expiresIn * 1000,
+    );
+    localStorage.setItem('userDetails', JSON.stringify(tokenDetails));
+}
+
+export function runLogoutTimer(dispatch, timer, history) {
+    setTimeout(() => {
+        dispatch(logout(history));
+    }, timer);
+}
+

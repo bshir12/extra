@@ -1,8 +1,46 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import api from "../../services/api";
+
 
 export default function Login() {
   const navigate = useNavigate();
+
+  const [values, setValues] = useState({
+    username: "",
+    password: "",
+    showPassword: false,
+  })
+
+  const getLogin = async (e) => {
+    try {
+      const url = (`/api/v1/user/`);
+      const response = await api.get(url);
+      console.log(response.data);
+      setValues(response.data)
+    } catch {
+      console.log("error");
+    }
+  }
+  useEffect(() => {
+    getLogin();
+    //handleSubmit();
+  }, [])
+/*
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      axios.post("/api/v1/user/", {
+          email: values.email,
+          password: values.pass,
+        })
+        .then((res) => {
+          localStorage.setItem("token", res.data.token);
+          navigate("/dashboard");
+        })
+        .catch((err) => console.error(err));
+    };*/
+
+
   return (
     <>
             <div className="mx-auto mt-14 lg:w-4/12 px-4 relative flex flex-col w-full mb-6 shadow-xl shadow-gray-500 rounded-lg bg-slate-100 ">
@@ -28,6 +66,8 @@ export default function Login() {
                       type="email"
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="bashir"
+                      required
+                      onChange={(e)=> setValues({...values, username: e.target.value})}
                     />
                   </div>
 
@@ -42,6 +82,10 @@ export default function Login() {
                       type="password"
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                       placeholder="Password"
+                      required
+                      onChange={(e) => setValues({ ...values, password: e.target.value })}
+                      //value={password}
+                      //onChange={(e) => setPassword(e.target.value)}
                     />
                   </div>
                   <div>

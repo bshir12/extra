@@ -15,13 +15,7 @@ const Header = () => {
         </div>
         <div>
           <ul className="flex mt-3 mr-3">
-            <li className="mr-5">
-              <Link to={"/listproduct"}>
-              <button className="border text-black py-1 px-6 rounded-md hover:bg-orange-700 hover:text-white  ">
-                List Product
-              </button>
-              </Link>
-             
+            <li className="mr-5">   
             </li>
             <li className="mr-7">
               <Link to={"/login"}>

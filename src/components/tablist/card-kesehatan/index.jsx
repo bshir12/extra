@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import api from "../../../services/api";
-import TombolPenjelasan from '../buttondetail';
 
 const CardKesehatan = () => {
   const [users, setUsers] = useState([])
 
   const getCardKesehatan = async () => {
     try {
-      const url = (`/api/v1/produk/503`);
+      const url = (`/api/v1/produk/list/503`);
       const response = await api.get(url);
       console.log(response.data);
       setUsers(response.data)
@@ -34,7 +33,6 @@ const CardKesehatan = () => {
           </div>
         ))}
       </div>
-      <TombolPenjelasan/>
     </>
   )
 }
