@@ -1,0 +1,7 @@
+.p1 {
+    height: 259px;
+    transition: all  ease-in;
+}
+.p1:hover {
+    transform: scale(1.3);   
+}
