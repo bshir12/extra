@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react'
+import { useNavigate } from "react-router-dom";
 import api from "../../../services/api";
 
-const CardPendidikan = () => {
+const CardKonvensional = () => {
   const [users, setUsers] = useState([])
 
-  const getCardPendidikan = async () => {
+  const navigate = useNavigate();
+  const getKonvensional = async () => {
     try {
-      const url = (`/api/v1/produk/list/501`);
+      const url = (`/api/v1/produk/list/503`);
       const response = await api.get(url);
       console.log(response.data);
       setUsers(response.data)
@@ -15,15 +17,16 @@ const CardPendidikan = () => {
     }
   }
   useEffect(() => {
-    getCardPendidikan();
+    getKonvensional();
   }, [])
   return (
     <>
-      <div className='grid grid-rows-auto grid-cols-3 gap-4'>
-        {users.map(produk=>(
+      <div className=' grid grid-rows-auto grid-cols-3 gap-4'>
+        {users.map(produk => (
           <div key={produk.id}>
-            <div className='w-72 h-80 rounded-lg border shadow-xl bg-sky-400 border-slate-500'>
-              <img src={require('./child.png')} className='w-40 ml-14' alt='child'></img>
+            <div onClick={() => navigate(`/detailproduct/`+produk.id)}>
+            <div className='w-72 h-80 rounded-lg border shadow-xl bg-sky-400 border-slate-500 '>
+              <img src={require('./sick.png')} className='w-40 ml-14' alt='sick'></img>
               <div className=' w-full h-32'>
                 <a className='text-lg'>{produk.namaProduk}</a>
                 <p className='text-xs'>{produk.deskripsi}</p>
@@ -31,10 +34,12 @@ const CardPendidikan = () => {
               </div>
             </div>
           </div>
+          </div>
         ))}
       </div>
     </>
   )
 }
 
-export default CardPendidikan
+
+export default CardKonvensional

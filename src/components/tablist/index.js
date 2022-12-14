@@ -1,4 +1,3 @@
-export {default as CardPendidikan} from './card-pendidikan';
-export {default as CardKesehatan} from './card-kesehatan';
-export {default as CardJiwa} from './card-jiwa';
-export {default as TombolPenjelasan} from './buttondetail';
+export {default as CardKonvensional} from './konvensional';
+export {default as CardSemua} from './semua';
+export {default as CardSyariah} from './syariah';
